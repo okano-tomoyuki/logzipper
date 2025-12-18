@@ -4,7 +4,7 @@
         "del_zip     : 作成されてから指定した期間(日,時,分)経過しているフォルダ中のZIPファイルを削除",
         "base_path_list : ZIP化 or 削除 対象のフォルダを検索する際の基底パス"
     ],
-    "zip_folder"        : {
+    "zip_dir"           : {
         "days"          : 0,
         "hours"         : 1,
         "minutes"       : 0
