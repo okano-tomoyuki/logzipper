@@ -87,5 +87,4 @@ if __name__ == "__main__":
     zipper = LogZipper("config.json")
     zipper.run()
     print(datetime.now(), "log zipper end.")
-    f.close()
-    input()
+    # f.close()
