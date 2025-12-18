@@ -21,8 +21,8 @@ class LogZipper:
         with open(json_path, 'r', encoding='utf-8') as f:
             j = json.load(f)
 
-        self.threshold_time         = datetime.now() - timedelta(days=j["zip_folder"]["days"], hours=j["zip_folder"]["hours"], minutes=j["zip_folder"]["minutes"])
-        self.old_zip_threshold      = datetime.now() - timedelta(days=j["del_folder"]["days"], hours=j["del_folder"]["hours"], minutes=j["del_folder"]["minutes"])
+        self.threshold_time         = datetime.now() - timedelta(days=j["zip_dir"]["days"], hours=j["zip_dir"]["hours"], minutes=j["zip_dir"]["minutes"])
+        self.old_zip_threshold      = datetime.now() - timedelta(days=j["del_zip"]["days"], hours=j["del_zip"]["hours"], minutes=j["del_zip"]["minutes"])
         for p in j["base_path_list"]:
             self.log_paths.append(Path(p))
 
