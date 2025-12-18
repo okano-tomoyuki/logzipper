@@ -3,12 +3,28 @@ from pathlib import Path
 from datetime import datetime, timedelta
 import shutil
 import json
+import sys
+import os
+from typing import List
 
 class LogZipper:
     def __init__(self, json_path: str):
-        self.log_paths = self.load_log_list(json_path)
-        self.threshold_time = datetime.now() - timedelta(days=1)
-        self.old_zip_threshold = datetime.now() - timedelta(days=90)
+
+        self.log_paths : List[Path] = []
+        self.threshold_time         = datetime.now() - timedelta(days=1)
+        self.old_zip_threshold      = datetime.now() - timedelta(days=90)
+
+        self.read_params(json_path)
+
+    def read_params(self, json_path):
+        
+        with open(json_path, 'r', encoding='utf-8') as f:
+            j = json.load(f)
+
+        self.threshold_time         = datetime.now() - timedelta(days=j["zip_folder"]["days"], hours=j["zip_folder"]["hours"], minutes=j["zip_folder"]["minutes"])
+        self.old_zip_threshold      = datetime.now() - timedelta(days=j["del_folder"]["days"], hours=j["del_folder"]["hours"], minutes=j["del_folder"]["minutes"])
+        for p in j["base_path_list"]:
+            self.log_paths.append(Path(p))
 
     def load_log_list(self, json_path: str):
         with open(json_path, 'r', encoding='utf-8') as f:
@@ -64,5 +80,12 @@ class LogZipper:
                 print(f"Invalid path: {path}")
 
 if __name__ == "__main__":
-    zipper = LogZipper("params/log_list.json")
+    f = open("debug.log", mode="w", encoding="utf-8")
+    sys.stdout = f
+    sys.stderr = f
+    print(datetime.now(), "log zipper start.")
+    zipper = LogZipper("config.json")
     zipper.run()
+    print(datetime.now(), "log zipper end.")
+    f.close()
+    input()

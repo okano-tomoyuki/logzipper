@@ -1,3 +1,6 @@
+# 
+*.log
+
 # PyInstaller の出力
 build/
 dist/

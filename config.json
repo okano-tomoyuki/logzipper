@@ -1,0 +1,20 @@
+{
+    "##" : [
+        "zip_folder     : 作成されてから指定した期間(日,時,分)経過しているフォルダをZIP化",
+        "del_folder     : 作成されてから指定した期間(日,時,分)経過しているフォルダを削除",
+        "base_path_list : ZIP化 or 削除 対象のフォルダを検索する際の基底パス"
+    ],
+    "zip_folder"        : {
+        "days"          : 0,
+        "hours"         : 0,
+        "minutes"       : 1
+    },
+    "del_folder"        : {
+        "days"          : 10,
+        "hours"         : 0,
+        "minutes"       : 0
+    },
+    "base_path_list"    : [
+        "C:\\share\\avoid_log"
+    ]
+}
